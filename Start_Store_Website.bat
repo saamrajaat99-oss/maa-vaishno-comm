@@ -18,7 +18,7 @@ if %ERRORLEVEL% NEQ 0 (
 )
 
 echo Opening site in default browser...
-start "" "http://127.0.0.1:8000"
+start "" "http://127.0.0.1:5500"
 
 exit
 

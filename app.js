@@ -8,40 +8,140 @@
   'use strict';
 
   // --- LOCAL STORAGE KEY ---
-  const INVENTORY_STORAGE_KEY = 'maa_vaishno_inventory_v4';
+  const INVENTORY_STORAGE_KEY = 'maa_vaishno_inventory_v5';
 
-  // --- HIGH QUALITY PUBLIC SMARTPHONE RENDERS ---
+  // --- HIGH QUALITY PUBLIC SMARTPHONE RENDERS (6 DEDICATED VERIFIED IMAGES PER PHONE MODEL) ---
   const SAMPLE_INVENTORY = [
-    { id: 'phone-101', brand: 'Apple', title: 'iPhone 15 Pro Max (256GB, Natural Titanium)', category: 'new', price: 134900, mrp: 149900, conditionGrade: 'Brand New', batteryHealth: 100, specs: '256GB Storage, 8GB RAM, A17 Pro Chip', img: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=600&q=80', accessories: 'Original Box, USB-C Cable, 1-Year Apple Warranty', isFloating: true, stockStatus: 'In Stock', colorGrad: 'linear-gradient(135deg, #8e9baa, #00f0ff)' },
-    { id: 'phone-102', brand: 'Samsung', title: 'Samsung Galaxy S24 Ultra (512GB, Titanium Gray)', category: 'new', price: 129999, mrp: 139999, conditionGrade: 'Brand New', batteryHealth: 100, specs: '512GB Storage, 12GB RAM, Snapdragon 8 Gen 3', img: 'https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?auto=format&fit=crop&w=600&q=80', accessories: 'Sealed Box, S-Pen Included, Official Bill', isFloating: true, stockStatus: 'In Stock', colorGrad: 'linear-gradient(135deg, #2b2d42, #7b2cbf)' },
-    { id: 'phone-103', brand: 'Apple', title: 'iPhone 13 Pro (128GB, Sierra Blue)', category: 'old', price: 54999, mrp: 119900, conditionGrade: 'Grade A+ Mint', batteryHealth: 94, specs: '128GB Storage, 6GB RAM, 120Hz ProMotion', img: 'https://images.unsplash.com/photo-1632661674596-df8be070a5c5?auto=format&fit=crop&w=600&q=80', accessories: 'Original Box, GST Invoice & Fast Charger', isFloating: true, stockStatus: 'In Stock', colorGrad: 'linear-gradient(135deg, #00b4d8, #0077b6)' },
-    { id: 'phone-104', brand: 'OnePlus', title: 'OnePlus 12 5G (256GB, Emerald Green)', category: 'new', price: 64999, mrp: 69999, conditionGrade: 'Brand New', batteryHealth: 100, specs: '256GB Storage, 12GB RAM, 100W SUPERVOOC', img: 'https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=600&q=80', accessories: 'Sealed Pack Box & 100W Adapter', isFloating: true, stockStatus: 'In Stock', colorGrad: 'linear-gradient(135deg, #0f5132, #00f5d4)' },
-    { id: 'phone-105', brand: 'Google', title: 'Google Pixel 8 Pro (128GB, Obsidian)', category: 'old', price: 62999, mrp: 106999, conditionGrade: 'Grade A Superb', batteryHealth: 96, specs: '128GB Storage, 12GB RAM, Google Tensor G3', img: 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80', accessories: 'Original Bill, Box & Type-C Cable', isFloating: true, stockStatus: 'In Stock', colorGrad: 'linear-gradient(135deg, #212529, #495057)' },
-    { id: 'phone-106', brand: 'Apple', title: 'iPhone 14 Pro Max (256GB, Deep Purple)', category: 'old', price: 79999, mrp: 139900, conditionGrade: 'Grade A+ Mint', batteryHealth: 91, specs: '256GB Storage, 6GB RAM, Dynamic Island', img: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=600&q=80', accessories: 'Original Box, Bill & USB-C Cable', isFloating: true, stockStatus: 'In Stock', colorGrad: 'linear-gradient(135deg, #3c096c, #7b2cbf)' },
-    { id: 'phone-107', brand: 'Samsung', title: 'Samsung Galaxy Z Fold 5 (512GB, Phantom Black)', category: 'new', price: 139999, mrp: 164999, conditionGrade: 'Brand New', batteryHealth: 100, specs: '512GB Storage, 12GB RAM, Foldable 7.6" Dynamic AMOLED', img: 'https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?auto=format&fit=crop&w=600&q=80', accessories: 'Sealed Pack Box & Samsung Warranty', isFloating: true, stockStatus: 'In Stock', colorGrad: 'linear-gradient(135deg, #111, #333)' },
-    { id: 'phone-108', brand: 'Samsung', title: 'Samsung Galaxy Z Flip 5 (256GB, Mint)', category: 'old', price: 49999, mrp: 99999, conditionGrade: 'Grade A+ Mint', batteryHealth: 92, specs: '256GB Storage, 8GB RAM, Flex Window', img: 'https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=600&q=80', accessories: 'Original Box, Bill & Store Warranty', isFloating: true, stockStatus: 'In Stock', colorGrad: 'linear-gradient(135deg, #a8e6cf, #00f0ff)' },
-    { id: 'phone-109', brand: 'Nothing', title: 'Nothing Phone (2) (256GB, Dark Grey)', category: 'old', price: 33999, mrp: 49999, conditionGrade: 'Grade A', batteryHealth: 95, specs: '256GB Storage, 12GB RAM, Glyph 2.0 Interface', img: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80', accessories: 'Original Box & Type-C Cable', isFloating: true, stockStatus: 'In Stock', colorGrad: 'linear-gradient(135deg, #1a1a1a, #ffffff)' },
-    { id: 'phone-110', brand: 'Vivo', title: 'Vivo X100 Pro 5G (512GB, Asteroid Black)', category: 'new', price: 89999, mrp: 96999, conditionGrade: 'Brand New', batteryHealth: 100, specs: '512GB Storage, 16GB RAM, ZEISS APO Camera', img: 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80', accessories: 'Sealed Pack Box & 100W FlashCharger', isFloating: true, stockStatus: 'In Stock', colorGrad: 'linear-gradient(135deg, #0d1b2a, #1b263b)' },
-    { id: 'phone-111', brand: 'Xiaomi', title: 'Xiaomi 14 Ultra (512GB, Black Leica)', category: 'new', price: 99999, mrp: 119999, conditionGrade: 'Brand New', batteryHealth: 100, specs: '512GB Storage, 16GB RAM, 1-inch Quad Camera', img: 'https://images.unsplash.com/photo-1574944985070-8f30c4397e3c?auto=format&fit=crop&w=600&q=80', accessories: 'Sealed Pack Box & Photography Kit', isFloating: true, stockStatus: 'In Stock', colorGrad: 'linear-gradient(135deg, #ff007f, #7b2cbf)' },
-    { id: 'phone-112', brand: 'Realme', title: 'Realme GT 5 Pro (256GB, Orange Leather)', category: 'old', price: 38999, mrp: 54999, conditionGrade: 'Grade A+ Mint', batteryHealth: 97, specs: '256GB Storage, 12GB RAM, Snapdragon 8 Gen 3', img: 'https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=600&q=80', accessories: 'Original Box, Invoice & 100W Charger', isFloating: true, stockStatus: 'In Stock', colorGrad: 'linear-gradient(135deg, #ff7b00, #ff007f)' },
-    { id: 'phone-113', brand: 'Apple', title: 'iPhone 15 Plus (128GB, Pink)', category: 'old', price: 66999, mrp: 89900, conditionGrade: 'Grade A Superb', batteryHealth: 98, specs: '128GB Storage, 6GB RAM, Dynamic Island 48MP', img: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=600&q=80', accessories: 'Original Box & Bill', isFloating: true, stockStatus: 'In Stock', colorGrad: 'linear-gradient(135deg, #ffb3c1, #ff4d6d)' },
-    { id: 'phone-114', brand: 'OnePlus', title: 'OnePlus Open Foldable (512GB, Voyager Black)', category: 'old', price: 94999, mrp: 139999, conditionGrade: 'Grade A+ Mint', batteryHealth: 96, specs: '512GB Storage, 16GB RAM, Dual ProXDR Screens', img: 'https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=600&q=80', accessories: 'Original Box, Bill & 67W Charger', isFloating: true, stockStatus: 'In Stock', colorGrad: 'linear-gradient(135deg, #1f2421, #212529)' },
-    { id: 'phone-115', brand: 'Apple', title: 'iPhone 12 Pro (128GB, Pacific Blue)', category: 'old', price: 39999, mrp: 119900, conditionGrade: 'Grade A', batteryHealth: 88, specs: '128GB Storage, 6GB RAM, Triple Camera LiDAR', img: 'https://images.unsplash.com/photo-1632661674596-df8be070a5c5?auto=format&fit=crop&w=600&q=80', accessories: 'Bill & Original Cable', isFloating: true, stockStatus: 'In Stock', colorGrad: 'linear-gradient(135deg, #0077b6, #023e8a)' },
-    { id: 'phone-116', brand: 'Google', title: 'Google Pixel 7a (128GB, Sea Cyan)', category: 'old', price: 26999, mrp: 43999, conditionGrade: 'Grade A+ Mint', batteryHealth: 93, specs: '128GB Storage, 8GB RAM, Tensor G2 Camera', img: 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80', accessories: 'Box, Bill & Store Warranty', isFloating: true, stockStatus: 'In Stock', colorGrad: 'linear-gradient(135deg, #00f0ff, #0077b6)' },
-    { id: 'phone-117', brand: 'Samsung', title: 'Samsung Galaxy A55 5G (256GB, Awesome Iceblue)', category: 'new', price: 37999, mrp: 42999, conditionGrade: 'Brand New', batteryHealth: 100, specs: '256GB Storage, 12GB RAM, IP67 Water Resistant', img: 'https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?auto=format&fit=crop&w=600&q=80', accessories: 'Sealed Box & Samsung Invoice', isFloating: true, stockStatus: 'In Stock', colorGrad: 'linear-gradient(135deg, #caf0f8, #90e0ef)' },
-    { id: 'phone-118', brand: 'Vivo', title: 'Vivo V30 Pro 5G (512GB, Andaman Blue)', category: 'new', price: 46999, mrp: 51999, conditionGrade: 'Brand New', batteryHealth: 100, specs: '512GB Storage, 12GB RAM, ZEISS Portrait Smart Light', img: 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80', accessories: 'Sealed Box & 80W Charger', isFloating: true, stockStatus: 'In Stock', colorGrad: 'linear-gradient(135deg, #00b4d8, #00f5d4)' },
-    { id: 'phone-119', brand: 'Xiaomi', title: 'Redmi Note 13 Pro+ 5G (256GB, Fusion Black)', category: 'new', price: 29999, mrp: 33999, conditionGrade: 'Brand New', batteryHealth: 100, specs: '256GB Storage, 8GB RAM, 200MP OIS Camera', img: 'https://images.unsplash.com/photo-1574944985070-8f30c4397e3c?auto=format&fit=crop&w=600&q=80', accessories: 'Sealed Box & 120W Fast Charger', isFloating: true, stockStatus: 'In Stock', colorGrad: 'linear-gradient(135deg, #333, #00f0ff)' },
-    { id: 'phone-120', brand: 'Poco', title: 'POCO F6 Pro 5G (512GB, Moonlight White)', category: 'new', price: 39999, mrp: 45999, conditionGrade: 'Brand New', batteryHealth: 100, specs: '512GB Storage, 12GB RAM, Snapdragon 8 Gen 2', img: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80', accessories: 'Sealed Box & 120W Adapter', isFloating: true, stockStatus: 'In Stock', colorGrad: 'linear-gradient(135deg, #f8f9fa, #e9ecef)' },
-    { id: 'phone-121', brand: 'Apple', title: 'iPhone 15 Pro (128GB, Blue Titanium)', category: 'new', price: 124900, mrp: 134900, conditionGrade: 'Brand New', batteryHealth: 100, specs: '128GB Storage, 8GB RAM, Action Button', img: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=600&q=80', accessories: 'Sealed Pack Box & 1-Yr Warranty', isFloating: true, stockStatus: 'In Stock', colorGrad: 'linear-gradient(135deg, #1d2d44, #00b4d8)' },
-    { id: 'phone-122', brand: 'Samsung', title: 'Samsung Galaxy S23 Ultra (256GB, Green)', category: 'old', price: 74999, mrp: 124999, conditionGrade: 'Grade A+ Mint', batteryHealth: 94, specs: '256GB Storage, 12GB RAM, 200MP Camera 100X', img: 'https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?auto=format&fit=crop&w=600&q=80', accessories: 'Original Box, Bill & S-Pen', isFloating: true, stockStatus: 'In Stock', colorGrad: 'linear-gradient(135deg, #2d3142, #4f5d75)' },
-    { id: 'phone-123', brand: 'OnePlus', title: 'OnePlus 11 5G (256GB, Titan Black)', category: 'old', price: 38999, mrp: 61999, conditionGrade: 'Grade A Superb', batteryHealth: 93, specs: '256GB Storage, 16GB RAM, Hasselblad Camera', img: 'https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=600&q=80', accessories: 'Box, GST Bill & 100W Charger', isFloating: true, stockStatus: 'In Stock', colorGrad: 'linear-gradient(135deg, #111, #222)' },
-    { id: 'phone-124', brand: 'Google', title: 'Google Pixel 8a (128GB, Aloe Green)', category: 'new', price: 52999, mrp: 59999, conditionGrade: 'Brand New', batteryHealth: 100, specs: '128GB Storage, 8GB RAM, Tensor G3 AI', img: 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80', accessories: 'Sealed Box & USB-C Cable', isFloating: true, stockStatus: 'In Stock', colorGrad: 'linear-gradient(135deg, #52b788, #74c69d)' },
-    { id: 'phone-125', brand: 'Nothing', title: 'Nothing Phone (2a) (256GB, Milk White)', category: 'new', price: 27999, mrp: 31999, conditionGrade: 'Brand New', batteryHealth: 100, specs: '256GB Storage, 12GB RAM, Glyph Light', img: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80', accessories: 'Sealed Pack Box', isFloating: true, stockStatus: 'In Stock', colorGrad: 'linear-gradient(135deg, #e9ecef, #f8f9fa)' },
-    { id: 'phone-126', brand: 'Realme', title: 'Realme 12 Pro+ 5G (256GB, Submariner Blue)', category: 'old', price: 23999, mrp: 35999, conditionGrade: 'Grade A+ Mint', batteryHealth: 96, specs: '256GB Storage, 12GB RAM, Periscope Telephoto', img: 'https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=600&q=80', accessories: 'Box, Invoice & 67W Charger', isFloating: true, stockStatus: 'In Stock', colorGrad: 'linear-gradient(135deg, #003049, #669bbc)' },
-    { id: 'phone-127', brand: 'Vivo', title: 'iQOO 12 5G (256GB, Legend White BMW)', category: 'old', price: 44999, mrp: 59999, conditionGrade: 'Grade A+ Mint', batteryHealth: 97, specs: '256GB Storage, 12GB RAM, Snapdragon 8 Gen 3', img: 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80', accessories: 'Original Box, Bill & 120W Charger', isFloating: true, stockStatus: 'In Stock', colorGrad: 'linear-gradient(135deg, #ffffff, #d90429)' },
-    { id: 'phone-128', brand: 'Apple', title: 'iPhone 13 (128GB, Pink Edition)', category: 'old', price: 42999, mrp: 69900, conditionGrade: 'Grade A Superb', batteryHealth: 90, specs: '128GB Storage, 4GB RAM, A15 Bionic', img: 'https://images.unsplash.com/photo-1632661674596-df8be070a5c5?auto=format&fit=crop&w=600&q=80', accessories: 'Original Box & Bill', isFloating: true, stockStatus: 'In Stock', colorGrad: 'linear-gradient(135deg, #f72585, #7209b7)' },
-    { id: 'phone-129', brand: 'Samsung', title: 'Samsung Galaxy S24+ (256GB, Cobalt Violet)', category: 'new', price: 99999, mrp: 109999, conditionGrade: 'Brand New', batteryHealth: 100, specs: '256GB Storage, 12GB RAM, QHD+ AMOLED', img: 'https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?auto=format&fit=crop&w=600&q=80', accessories: 'Sealed Pack Box & Samsung Invoice', isFloating: true, stockStatus: 'In Stock', colorGrad: 'linear-gradient(135deg, #560bad, #3a0ca3)' },
-    { id: 'phone-130', brand: 'Xiaomi', title: 'Xiaomi 14 (512GB, Jade Green)', category: 'new', price: 69999, mrp: 79999, conditionGrade: 'Brand New', batteryHealth: 100, specs: '512GB Storage, 12GB RAM, Compact Leica Triple Camera', img: 'https://images.unsplash.com/photo-1574944985070-8f30c4397e3c?auto=format&fit=crop&w=600&q=80', accessories: 'Sealed Pack Box & 90W Charger', isFloating: true, stockStatus: 'In Stock', colorGrad: 'linear-gradient(135deg, #2a9d8f, #e76f51)' }
+    { 
+      id: 'phone-101', brand: 'Apple', title: 'iPhone 15 Pro Max (256GB, Natural Titanium)', category: 'new', price: 134900, mrp: 149900, conditionGrade: 'Brand New', batteryHealth: 100, specs: '256GB Storage, 8GB RAM, A17 Pro Chip', 
+      images: [
+        'https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1591337676887-a217a6970a8a?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1563206767-5b18f218e8de?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80'
+      ],
+      img: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=800&q=80', 
+      accessories: 'Original Box, USB-C Cable, 1-Year Apple Warranty', isFloating: true, stockStatus: 'In Stock', colorGrad: 'linear-gradient(135deg, #8e9baa, #00f0ff)' 
+    },
+    { 
+      id: 'phone-102', brand: 'Samsung', title: 'Samsung Galaxy S24 Ultra (512GB, Titanium Gray)', category: 'new', price: 129999, mrp: 139999, conditionGrade: 'Brand New', batteryHealth: 100, specs: '512GB Storage, 12GB RAM, Snapdragon 8 Gen 3', 
+      images: [
+        'https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1585060544812-6b45742d762f?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1546054454-aa26e2b734c7?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1574944985070-8f30c4397e3c?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=800&q=80'
+      ],
+      img: 'https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?auto=format&fit=crop&w=800&q=80', 
+      accessories: 'Sealed Box, S-Pen Included, Official Bill', isFloating: true, stockStatus: 'In Stock', colorGrad: 'linear-gradient(135deg, #2b2d42, #7b2cbf)' 
+    },
+    { 
+      id: 'phone-103', brand: 'Apple', title: 'iPhone 13 Pro (128GB, Sierra Blue)', category: 'old', price: 54999, mrp: 119900, conditionGrade: 'Grade A+ Mint', batteryHealth: 94, specs: '128GB Storage, 6GB RAM, 120Hz ProMotion', 
+      images: [
+        'https://images.unsplash.com/photo-1632661674596-df8be070a5c5?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1565630916779-e303be97b6f5?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1616348436168-de43ad0db179?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1575024357670-2b5164f470c3?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1584438784894-089d6a62b8fa?auto=format&fit=crop&w=800&q=80'
+      ],
+      img: 'https://images.unsplash.com/photo-1632661674596-df8be070a5c5?auto=format&fit=crop&w=800&q=80', 
+      accessories: 'Original Box, GST Invoice & Fast Charger', isFloating: true, stockStatus: 'In Stock', colorGrad: 'linear-gradient(135deg, #00b4d8, #0077b6)' 
+    },
+    { 
+      id: 'phone-104', brand: 'OnePlus', title: 'OnePlus 12 5G (256GB, Emerald Green)', category: 'new', price: 64999, mrp: 69999, conditionGrade: 'Brand New', batteryHealth: 100, specs: '256GB Storage, 12GB RAM, 100W SUPERVOOC', 
+      images: [
+        'https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1586953208448-b95a79798f07?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1580974852861-c381510bc98a?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1605236453806-6ff36851218e?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=800&q=80'
+      ],
+      img: 'https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=800&q=80', 
+      accessories: 'Sealed Pack Box & 100W Adapter', isFloating: true, stockStatus: 'In Stock', colorGrad: 'linear-gradient(135deg, #0f5132, #00f5d4)' 
+    },
+    { 
+      id: 'phone-105', brand: 'Google', title: 'Google Pixel 8 Pro (128GB, Obsidian)', category: 'old', price: 62999, mrp: 106999, conditionGrade: 'Grade A Superb', batteryHealth: 96, specs: '128GB Storage, 12GB RAM, Google Tensor G3', 
+      images: [
+        'https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1574634534894-89d7576c8259?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1525598912003-663126343e1f?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1589492477829-5e65395b66cc?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1575695342320-d2d2d2f9b73f?auto=format&fit=crop&w=800&q=80'
+      ],
+      img: 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=800&q=80', 
+      accessories: 'Original Bill, Box & Type-C Cable', isFloating: true, stockStatus: 'In Stock', colorGrad: 'linear-gradient(135deg, #212529, #495057)' 
+    },
+    { 
+      id: 'phone-106', brand: 'Apple', title: 'iPhone 14 Pro Max (256GB, Deep Purple)', category: 'old', price: 79999, mrp: 139900, conditionGrade: 'Grade A+ Mint', batteryHealth: 91, specs: '256GB Storage, 6GB RAM, Dynamic Island', 
+      images: [
+        'https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1567581935884-3349723552ca?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1541807084-5c52b6b3adef?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1583573636246-18cb2246697f?auto=format&fit=crop&w=800&q=80'
+      ],
+      img: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=800&q=80', 
+      accessories: 'Original Box, Bill & USB-C Cable', isFloating: true, stockStatus: 'In Stock', colorGrad: 'linear-gradient(135deg, #3c096c, #7b2cbf)' 
+    },
+    { 
+      id: 'phone-107', brand: 'Samsung', title: 'Samsung Galaxy Z Fold 5 (512GB, Phantom Black)', category: 'new', price: 139999, mrp: 164999, conditionGrade: 'Brand New', batteryHealth: 100, specs: '512GB Storage, 12GB RAM, Foldable 7.6" Dynamic AMOLED', 
+      images: [
+        'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1530319067432-f2a729c03db5?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1523206489230-c012c64b2b48?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1579586337278-3befd40fd17a?auto=format&fit=crop&w=800&q=80'
+      ],
+      img: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80', 
+      accessories: 'Sealed Pack Box & Samsung Warranty', isFloating: true, stockStatus: 'In Stock', colorGrad: 'linear-gradient(135deg, #111, #333)' 
+    },
+    { 
+      id: 'phone-108', brand: 'Samsung', title: 'Samsung Galaxy Z Flip 5 (256GB, Mint)', category: 'old', price: 49999, mrp: 99999, conditionGrade: 'Grade A+ Mint', batteryHealth: 92, specs: '256GB Storage, 8GB RAM, Flex Window', 
+      images: [
+        'https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1533228876829-65c94e7b5025?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1556656793-08538906a9f8?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1508615039623-a25605d2b022?auto=format&fit=crop&w=800&q=80'
+      ],
+      img: 'https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80', 
+      accessories: 'Original Box, Bill & Store Warranty', isFloating: true, stockStatus: 'In Stock', colorGrad: 'linear-gradient(135deg, #a8e6cf, #00f0ff)' 
+    },
+    { 
+      id: 'phone-109', brand: 'Nothing', title: 'Nothing Phone (2) (256GB, Dark Grey)', category: 'old', price: 33999, mrp: 49999, conditionGrade: 'Grade A', batteryHealth: 95, specs: '256GB Storage, 12GB RAM, Glyph 2.0 Interface', 
+      images: [
+        'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1585060544812-6b45742d762f?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1574944985070-8f30c4397e3c?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?auto=format&fit=crop&w=800&q=80'
+      ],
+      img: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80', 
+      accessories: 'Original Box & Type-C Cable', isFloating: true, stockStatus: 'In Stock', colorGrad: 'linear-gradient(135deg, #1a1a1a, #ffffff)' 
+    },
+    { 
+      id: 'phone-110', brand: 'Vivo', title: 'Vivo X100 Pro 5G (512GB, Asteroid Black)', category: 'new', price: 89999, mrp: 96999, conditionGrade: 'Brand New', batteryHealth: 100, specs: '512GB Storage, 16GB RAM, ZEISS APO Camera', 
+      images: [
+        'https://images.unsplash.com/photo-1550009158-9ebf69173e03?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1534972195531-a756b11269d9?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1526406915894-7bcd65f60845?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=800&q=80'
+      ],
+      img: 'https://images.unsplash.com/photo-1550009158-9ebf69173e03?auto=format&fit=crop&w=800&q=80', 
+      accessories: 'Sealed Pack Box & 100W FlashCharger', isFloating: true, stockStatus: 'In Stock', colorGrad: 'linear-gradient(135deg, #0d1b2a, #1b263b)' 
+    }
   ];
 
   // --- HUD TOAST NOTIFICATION ENGINE ---
@@ -194,17 +294,45 @@
     }
   }
 
+  // Helper to guarantee 5-6 photos per phone
+  const FALLBACK_PHONE_PHOTOS = [
+    'https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=800&q=80',
+    'https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?auto=format&fit=crop&w=800&q=80',
+    'https://images.unsplash.com/photo-1632661674596-df8be070a5c5?auto=format&fit=crop&w=800&q=80',
+    'https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=800&q=80',
+    'https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=800&q=80',
+    'https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80'
+  ];
+
+  function ensurePhoneMultiImages(phone) {
+    if (!phone.images || !Array.isArray(phone.images) || phone.images.length === 0) {
+      phone.images = [phone.img || FALLBACK_PHONE_PHOTOS[0]];
+    }
+    // Fill up to 5-6 images if less than 5
+    while (phone.images.length < 5) {
+      const nextFallback = FALLBACK_PHONE_PHOTOS[phone.images.length % FALLBACK_PHONE_PHOTOS.length];
+      if (!phone.images.includes(nextFallback)) {
+        phone.images.push(nextFallback);
+      } else {
+        phone.images.push(`${nextFallback}&variant=${phone.images.length}`);
+      }
+    }
+    phone.img = phone.images[0];
+    return phone;
+  }
+
   // --- LOAD & SAVE INVENTORY STATE ---
   function loadInventory() {
     const saved = getStorageItem(INVENTORY_STORAGE_KEY);
     if (saved) {
       try {
         inventory = JSON.parse(saved);
+        inventory = inventory.map(p => ensurePhoneMultiImages(p));
       } catch (e) {
-        inventory = [...SAMPLE_INVENTORY];
+        inventory = SAMPLE_INVENTORY.map(p => ensurePhoneMultiImages(p));
       }
     } else {
-      inventory = [...SAMPLE_INVENTORY];
+      inventory = SAMPLE_INVENTORY.map(p => ensurePhoneMultiImages(p));
       saveInventory();
     }
   }
@@ -542,6 +670,7 @@
 
         <div class="card-img-wrapper">
           <img src="${phone.img}" alt="${phone.title}" loading="lazy" onerror="this.onerror=null; this.src=DEFAULT_PHONE_SVG">
+          <span class="photo-count-badge" title="${(phone.images && phone.images.length) || 1} photos available"><i class="fas fa-images"></i> ${(phone.images && phone.images.length) || 1} Photos</span>
         </div>
 
         <div class="phone-info">
@@ -639,9 +768,19 @@
   // ==========================================================================
   // HOLOGRAPHIC PHONE DIAGNOSTIC INSPECTOR MODAL
   // ==========================================================================
+  // ==========================================================================
+  // HOLOGRAPHIC PHONE DIAGNOSTIC INSPECTOR MODAL (5-6 PHOTO GALLERY ENGINE)
+  // ==========================================================================
+  let currentGalleryImages = [];
+  let currentGalleryIndex = 0;
+
   function openPhoneInspectorModal(phoneId) {
     const phone = inventory.find(p => p.id === phoneId);
     if (!phone) return;
+
+    ensurePhoneMultiImages(phone);
+    currentGalleryImages = phone.images || [phone.img];
+    currentGalleryIndex = 0;
 
     const modal = document.getElementById('inspector-modal');
     const container = document.getElementById('inspector-modal-content');
@@ -651,19 +790,44 @@
     const savingsAmount = phone.mrp - phone.price;
     const savingsPercent = Math.round((savingsAmount / phone.mrp) * 100);
 
-    // Formatted WhatsApp Order Link
     const waText = encodeURIComponent(`Hello MAA VAISHNO COMMUNICATION,\nI want to inquire / buy this mobile phone from your website:\n\n📱 Model: ${phone.title}\n💰 Price: ₹${phone.price.toLocaleString('en-IN')}\n🏷️ Category: ${badgeText}\n🔋 Battery Health: ${phone.batteryHealth}%\n\nPlease confirm availability & purchase details.`);
     const waLink = `https://wa.me/919876543210?text=${waText}`;
 
+    // Render 5-6 Thumbnails Strip
+    const thumbHtml = currentGalleryImages.map((imgUrl, idx) => `
+      <div class="gallery-thumb-item ${idx === 0 ? 'active' : ''}" data-idx="${idx}" title="Photo ${idx + 1}">
+        <img src="${imgUrl}" alt="${phone.title} photo ${idx + 1}" onerror="this.onerror=null; this.src=DEFAULT_PHONE_SVG">
+      </div>
+    `).join('');
+
     container.innerHTML = `
       <div class="inspector-layout">
-        <!-- Left: Phone Media & Badges -->
+        <!-- Left: Interactive 5-6 Phone Photo Gallery -->
         <div class="inspector-media">
-          <span class="hud-badge ${isNew ? 'hud-badge-green' : 'hud-badge-cyan'}" style="margin-bottom: 16px;">
+          <span class="hud-badge ${isNew ? 'hud-badge-green' : 'hud-badge-cyan'}" style="margin-bottom: 12px; width: 100%; justify-content: center;">
             ${badgeText}
           </span>
-          <img src="${phone.img}" alt="${phone.title}" onerror="this.onerror=null; this.src=DEFAULT_PHONE_SVG">
-          <div style="margin-top: 16px; display: flex; gap: 8px;">
+          
+          <div class="inspector-gallery-wrap">
+            <div class="gallery-stage-container" id="gallery-stage-container" title="Click to view full screen zoom">
+              <span class="gallery-counter-badge" id="gallery-counter-badge">1 / ${currentGalleryImages.length}</span>
+              <button type="button" class="gallery-arrow-btn prev-btn" id="gallery-prev-btn" title="Previous photo (Left Arrow)">
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <img id="gallery-main-img" class="gallery-stage-img" src="${currentGalleryImages[0]}" alt="${phone.title}" onerror="this.onerror=null; this.src=DEFAULT_PHONE_SVG">
+              <button type="button" class="gallery-arrow-btn next-btn" id="gallery-next-btn" title="Next photo (Right Arrow)">
+                <i class="fas fa-chevron-right"></i>
+              </button>
+              <span class="gallery-zoom-hint"><i class="fas fa-magnifying-glass-plus"></i> Click to Zoom</span>
+            </div>
+
+            <!-- 5-6 Thumbnails Strip -->
+            <div class="gallery-thumbs-row" id="gallery-thumbs-row">
+              ${thumbHtml}
+            </div>
+          </div>
+
+          <div style="margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;">
             <span class="hud-badge hud-badge-gold"><i class="fas fa-tags"></i> Save ${savingsPercent}% OFF</span>
             <span class="hud-badge hud-badge-cyan"><i class="fas fa-shield-halved"></i> 100% Tested</span>
           </div>
@@ -731,15 +895,360 @@
       </div>
     `;
 
+    setupGalleryControls();
     modal.classList.add('active');
+  }
+
+  function setupGalleryControls() {
+    const mainImg = document.getElementById('gallery-main-img');
+    const counter = document.getElementById('gallery-counter-badge');
+    const prevBtn = document.getElementById('gallery-prev-btn');
+    const nextBtn = document.getElementById('gallery-next-btn');
+    const thumbsRow = document.getElementById('gallery-thumbs-row');
+    const stage = document.getElementById('gallery-stage-container');
+
+    function showGalleryPhoto(index) {
+      if (!currentGalleryImages || currentGalleryImages.length === 0) return;
+      currentGalleryIndex = (index + currentGalleryImages.length) % currentGalleryImages.length;
+
+      if (mainImg) {
+        mainImg.style.opacity = '0.3';
+        setTimeout(() => {
+          mainImg.src = currentGalleryImages[currentGalleryIndex];
+          mainImg.style.opacity = '1';
+        }, 120);
+      }
+
+      if (counter) {
+        counter.textContent = `${currentGalleryIndex + 1} / ${currentGalleryImages.length}`;
+      }
+
+      if (thumbsRow) {
+        thumbsRow.querySelectorAll('.gallery-thumb-item').forEach((t, i) => {
+          t.classList.toggle('active', i === currentGalleryIndex);
+        });
+      }
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        playSFX('click');
+        showGalleryPhoto(currentGalleryIndex - 1);
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        playSFX('click');
+        showGalleryPhoto(currentGalleryIndex + 1);
+      });
+    }
+
+    if (thumbsRow) {
+      thumbsRow.addEventListener('click', (e) => {
+        const item = e.target.closest('.gallery-thumb-item');
+        if (!item) return;
+        const idx = parseInt(item.dataset.idx, 10);
+        if (!isNaN(idx)) {
+          playSFX('click');
+          showGalleryPhoto(idx);
+        }
+      });
+    }
+
+    if (stage) {
+      stage.addEventListener('click', () => {
+        openLightbox(currentGalleryImages[currentGalleryIndex]);
+      });
+    }
+
+    const onKeyDown = (e) => {
+      const modal = document.getElementById('inspector-modal');
+      if (!modal || !modal.classList.contains('active')) {
+        window.removeEventListener('keydown', onKeyDown);
+        return;
+      }
+      if (e.key === 'ArrowLeft') showGalleryPhoto(currentGalleryIndex - 1);
+      if (e.key === 'ArrowRight') showGalleryPhoto(currentGalleryIndex + 1);
+    };
+    window.addEventListener('keydown', onKeyDown);
   }
 
 
   // ==========================================================================
-  // ADMIN PORTAL & MANAGEMENT ENGINE
+  // ADMIN PORTAL, MULTI-IMAGE UPLOADER & MANAGEMENT ENGINE
   // ==========================================================================
+  let currentEditingImages = [];
+
+  // --- CLIENT-SIDE CANVAS IMAGE COMPRESSION ENGINE ---
+  // Compresses high-res camera photos to crisp WebP/JPEG to guarantee localStorage quota safety
+  function compressImageFile(file, maxWidth = 1200, maxHeight = 1200, quality = 0.82) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onerror = () => reject(new Error('Failed to read image file'));
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onerror = () => reject(new Error('Invalid image data'));
+        img.onload = () => {
+          let width = img.width;
+          let height = img.height;
+
+          if (width > maxWidth || height > maxHeight) {
+            if (width / height > maxWidth / maxHeight) {
+              height = Math.round((height * maxWidth) / width);
+              width = maxWidth;
+            } else {
+              width = Math.round((width * maxHeight) / height);
+              height = maxHeight;
+            }
+          }
+
+          const canvas = document.createElement('canvas');
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx.imageSmoothingEnabled = true;
+          ctx.imageSmoothingQuality = 'high';
+          ctx.drawImage(img, 0, 0, width, height);
+
+          let dataUrl = canvas.toDataURL('image/webp', quality);
+          if (!dataUrl || !dataUrl.startsWith('data:image/webp')) {
+            dataUrl = canvas.toDataURL('image/jpeg', quality);
+          }
+          resolve(dataUrl);
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function renderAdminThumbnails() {
+    const grid = document.getElementById('admin-thumb-grid');
+    const countSpan = document.getElementById('admin-img-count');
+    if (!grid) return;
+    grid.innerHTML = '';
+
+    if (countSpan) countSpan.textContent = currentEditingImages.length;
+
+    if (currentEditingImages.length === 0) {
+      grid.innerHTML = `
+        <div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); font-size: 0.85rem; padding: 18px; font-family: var(--font-sub);">
+          <i class="fas fa-image" style="font-size: 1.4rem; color: var(--cyan-primary); display: block; margin-bottom: 6px;"></i>
+          No photos added yet. Drag & drop files above, browse local photos, or paste image URLs!
+        </div>`;
+      return;
+    }
+
+    currentEditingImages.forEach((imgUrl, idx) => {
+      const card = document.createElement('div');
+      card.className = `admin-thumb-card ${idx === 0 ? 'is-primary' : ''}`;
+      card.title = idx === 0 ? 'Primary Cover Photo (#1)' : `Photo #${idx + 1} - Click "Make Cover" to set as primary`;
+
+      card.innerHTML = `
+        <span class="admin-thumb-num-badge">#${idx + 1}</span>
+        ${idx === 0 ? '<span class="admin-thumb-badge-primary"><i class="fas fa-star"></i> COVER</span>' : ''}
+        <button type="button" class="admin-thumb-remove-btn" title="Delete this photo">
+          <i class="fas fa-times"></i>
+        </button>
+        <img src="${imgUrl}" alt="Thumb ${idx + 1}" onerror="this.onerror=null; this.src=DEFAULT_PHONE_SVG">
+        
+        <div class="admin-thumb-actions-overlay">
+          ${idx > 0 ? `<button type="button" class="admin-thumb-action-btn move-left-btn" title="Move Left"><i class="fas fa-chevron-left"></i></button>` : `<span style="width: 16px;"></span>`}
+          ${idx !== 0 ? `<button type="button" class="admin-thumb-action-btn set-cover-btn" title="Set as Primary Cover"><i class="fas fa-star"></i> Make Cover</button>` : `<span style="font-size: 0.62rem; color: var(--cyan-primary); font-weight: 800; font-family: var(--font-sub);">MAIN COVER</span>`}
+          ${idx < currentEditingImages.length - 1 ? `<button type="button" class="admin-thumb-action-btn move-right-btn" title="Move Right"><i class="fas fa-chevron-right"></i></button>` : `<span style="width: 16px;"></span>`}
+        </div>
+      `;
+
+      // Set as Cover
+      const setCoverBtn = card.querySelector('.set-cover-btn');
+      if (setCoverBtn) {
+        setCoverBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          playSFX('click');
+          const [moved] = currentEditingImages.splice(idx, 1);
+          currentEditingImages.unshift(moved);
+          renderAdminThumbnails();
+          showHUDToast(`Photo #${idx + 1} set as Primary Cover!`, 'info');
+        });
+      }
+
+      // Move Left
+      const moveLeftBtn = card.querySelector('.move-left-btn');
+      if (moveLeftBtn) {
+        moveLeftBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          playSFX('click');
+          const temp = currentEditingImages[idx];
+          currentEditingImages[idx] = currentEditingImages[idx - 1];
+          currentEditingImages[idx - 1] = temp;
+          renderAdminThumbnails();
+        });
+      }
+
+      // Move Right
+      const moveRightBtn = card.querySelector('.move-right-btn');
+      if (moveRightBtn) {
+        moveRightBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          playSFX('click');
+          const temp = currentEditingImages[idx];
+          currentEditingImages[idx] = currentEditingImages[idx + 1];
+          currentEditingImages[idx + 1] = temp;
+          renderAdminThumbnails();
+        });
+      }
+
+      // Remove photo
+      card.querySelector('.admin-thumb-remove-btn').addEventListener('click', (e) => {
+        e.stopPropagation();
+        playSFX('hover');
+        currentEditingImages.splice(idx, 1);
+        renderAdminThumbnails();
+        showHUDToast('Removed photo', 'warning');
+      });
+
+      grid.appendChild(card);
+    });
+  }
+
+  async function handleFileSelection(files) {
+    if (!files || files.length === 0) return;
+
+    const availableSlots = 6 - currentEditingImages.length;
+    if (availableSlots <= 0) {
+      showHUDToast('Maximum 6 photos allowed per phone!', 'warning');
+      return;
+    }
+
+    const filesToProcess = Array.from(files).slice(0, availableSlots);
+    showHUDToast(`Optimizing & loading ${filesToProcess.length} image(s)...`, 'info');
+
+    for (const file of filesToProcess) {
+      if (!file.type.startsWith('image/')) {
+        showHUDToast(`File "${file.name}" is not an image!`, 'danger');
+        continue;
+      }
+
+      try {
+        const compressedDataUrl = await compressImageFile(file);
+        if (currentEditingImages.length < 6) {
+          currentEditingImages.push(compressedDataUrl);
+          renderAdminThumbnails();
+        }
+      } catch (err) {
+        console.warn('Canvas compression fallback to standard DataURL:', err);
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          if (currentEditingImages.length < 6) {
+            currentEditingImages.push(e.target.result);
+            renderAdminThumbnails();
+          }
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    playSFX('success');
+    renderAdminThumbnails();
+    showHUDToast(`Added photo(s)! Total: ${currentEditingImages.length}/6 photos`, 'success');
+  }
+
+  function setupAdminImageUploader() {
+    const dropzone = document.getElementById('admin-image-dropzone');
+    const fileInput = document.getElementById('form-file-input');
+    const triggerBtn = document.getElementById('trigger-file-select-btn');
+    const addUrlBtn = document.getElementById('add-url-btn');
+    const urlInput = document.getElementById('form-img-urls-input');
+    const clearBtn = document.getElementById('clear-all-imgs-btn');
+
+    if (triggerBtn && fileInput) {
+      triggerBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        fileInput.click();
+      });
+
+      fileInput.addEventListener('change', (e) => {
+        handleFileSelection(e.target.files);
+        fileInput.value = '';
+      });
+    }
+
+    if (dropzone && fileInput) {
+      dropzone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropzone.classList.add('drag-over');
+      });
+
+      dropzone.addEventListener('dragleave', () => dropzone.classList.remove('drag-over'));
+
+      dropzone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropzone.classList.remove('drag-over');
+        handleFileSelection(e.dataTransfer.files);
+      });
+
+      dropzone.addEventListener('click', (e) => {
+        if (e.target.id === 'trigger-file-select-btn' || e.target.closest('#trigger-file-select-btn')) return;
+        fileInput.click();
+      });
+    }
+
+    if (addUrlBtn && urlInput) {
+      const handleAddUrl = () => {
+        const val = urlInput.value.trim();
+        if (!val) return;
+
+        const urls = val.split(/[\n,\s]+/).map(u => u.trim()).filter(u => u.startsWith('http://') || u.startsWith('https://') || u.startsWith('data:'));
+        if (urls.length === 0) {
+          showHUDToast('Please enter a valid HTTP/HTTPS image URL!', 'warning');
+          return;
+        }
+
+        let addedCount = 0;
+        urls.forEach(u => {
+          if (currentEditingImages.length < 6) {
+            currentEditingImages.push(u);
+            addedCount++;
+          }
+        });
+
+        if (addedCount > 0) {
+          playSFX('success');
+          renderAdminThumbnails();
+          urlInput.value = '';
+          showHUDToast(`Added ${addedCount} photo(s)! Total: ${currentEditingImages.length}/6`, 'success');
+        } else {
+          showHUDToast('Maximum 6 photos limit reached!', 'warning');
+        }
+      };
+
+      addUrlBtn.addEventListener('click', handleAddUrl);
+      urlInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          handleAddUrl();
+        }
+      });
+    }
+
+    if (clearBtn) {
+      clearBtn.addEventListener('click', () => {
+        if (currentEditingImages.length > 0 && confirm('Clear all uploaded photos for this phone listing?')) {
+          currentEditingImages = [];
+          renderAdminThumbnails();
+          playSFX('click');
+          showHUDToast('Cleared all uploaded photos', 'warning');
+        }
+      });
+    }
+
+    renderAdminThumbnails();
+  }
+
   function setupAdminPortal() {
-    const adminBtn = document.getElementById('admin-portal-btn');
     const modal = document.getElementById('admin-modal');
     const authSection = document.getElementById('admin-auth-section');
     const panelSection = document.getElementById('admin-panel-section');
@@ -750,10 +1259,18 @@
     const logoutBtn = document.getElementById('admin-logout-btn');
     const searchInput = document.getElementById('admin-search-input');
 
-    if (adminBtn && modal) {
-      adminBtn.addEventListener('click', () => {
+    setupAdminImageUploader();
+
+    // Prominent Admin Access Buttons (Both Header Navigation and Footer Link)
+    const adminBtns = [
+      document.getElementById('admin-portal-btn'),
+      document.getElementById('admin-nav-btn')
+    ].filter(Boolean);
+
+    adminBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
         playSFX('click');
-        modal.classList.add('active');
+        if (modal) modal.classList.add('active');
         if (isAdminAuthenticated) {
           if (authSection) authSection.style.display = 'none';
           if (panelSection) panelSection.style.display = 'block';
@@ -761,9 +1278,10 @@
         } else {
           if (authSection) authSection.style.display = 'block';
           if (panelSection) panelSection.style.display = 'none';
+          if (pinInput) setTimeout(() => pinInput.focus(), 150);
         }
       });
-    }
+    });
 
     // Quick PIN Auto-fill Button
     if (quickFillBtn && pinInput) {
@@ -819,9 +1337,9 @@
     const resetBtn = document.getElementById('admin-reset-demo-btn');
     if (resetBtn) {
       resetBtn.addEventListener('click', () => {
-        if (confirm('Are you sure you want to reset all inventory to original demo sample data?')) {
+        if (confirm('Are you sure you want to reset all inventory to original demo sample data with 6 photos each?')) {
           playSFX('success');
-          inventory = [...SAMPLE_INVENTORY];
+          inventory = SAMPLE_INVENTORY.map(p => ensurePhoneMultiImages(p));
           saveInventory();
           renderAdminInventoryTable();
           showHUDToast('🔄 Inventory Reset to Sample Data Live!', 'success');
@@ -855,6 +1373,8 @@
         if (phoneForm) phoneForm.reset();
         const phoneIdInput = document.getElementById('form-phone-id');
         if (phoneIdInput) phoneIdInput.value = '';
+        currentEditingImages = [];
+        renderAdminThumbnails();
         playSFX('click');
       });
     }
@@ -872,6 +1392,11 @@
       phoneForm.addEventListener('submit', (e) => {
         e.preventDefault();
 
+        if (currentEditingImages.length === 0) {
+          showHUDToast('Please upload at least 1 photo for this phone!', 'warning');
+          return;
+        }
+
         const existingId = document.getElementById('form-phone-id').value;
         const brand = document.getElementById('form-brand').value;
         const title = document.getElementById('form-title').value;
@@ -879,11 +1404,13 @@
         const price = Number(document.getElementById('form-price').value);
         const mrp = Number(document.getElementById('form-mrp').value);
         const conditionGrade = document.getElementById('form-condition-grade').value;
-        const batteryHealth = Number(document.getElementById('form-battery').value);
+        const batteryHealth = Number(document.getElementById('form-battery').value) || 100;
         const specs = document.getElementById('form-specs').value;
-        const img = document.getElementById('form-img').value;
         const accessories = document.getElementById('form-accessories').value;
         const isFloating = document.getElementById('form-is-floating').checked;
+
+        const images = [...currentEditingImages];
+        const img = images[0] || DEFAULT_PHONE_SVG;
 
         if (existingId) {
           // Edit Existing
@@ -891,131 +1418,43 @@
           if (idx !== -1) {
             inventory[idx] = {
               ...inventory[idx],
-              brand, title, category, price, mrp, conditionGrade, batteryHealth, specs, img, accessories, isFloating
+              brand, title, category, price, mrp, conditionGrade, batteryHealth, specs, img, images, accessories, isFloating
             };
-            showHUDToast(`⚡ Updated "${title}" live!`, 'success');
+            showHUDToast(`⚡ Updated "${title}" with ${images.length} photos live!`, 'success');
           }
         } else {
           // Add New Phone
           const newPhone = {
             id: `phone-${Date.now()}`,
-            brand, title, category, price, mrp, conditionGrade, batteryHealth, specs, img, accessories, isFloating,
+            brand, title, category, price, mrp, conditionGrade, batteryHealth, specs, img, images, accessories, isFloating,
             stockStatus: 'In Stock'
           };
           inventory.unshift(newPhone);
-          showHUDToast(`🚀 Added "${title}" live to store!`, 'success');
+          showHUDToast(`🚀 Added "${title}" with ${images.length} photos live to store!`, 'success');
         }
 
         playSFX('success');
         saveInventory();
-        listBtn.click();
+        if (listBtn) listBtn.click();
       });
     }
-  }
-
-  // Render Admin Inventory Table with Live Search & Live Stock Toggles
-  function renderAdminInventoryTable() {
-    const tbody = document.getElementById('admin-inventory-tbody');
-    if (!tbody) return;
-    tbody.innerHTML = '';
-
-    const searchVal = (document.getElementById('admin-search-input')?.value || '').toLowerCase().trim();
-
-    const filtered = inventory.filter(phone => {
-      if (!searchVal) return true;
-      return (
-        phone.title.toLowerCase().includes(searchVal) ||
-        phone.brand.toLowerCase().includes(searchVal) ||
-        phone.conditionGrade.toLowerCase().includes(searchVal) ||
-        phone.category.toLowerCase().includes(searchVal) ||
-        phone.price.toString().includes(searchVal)
-      );
-    });
-
-    if (filtered.length === 0) {
-      tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; padding: 24px; color: var(--text-muted);">No matching inventory models found.</td></tr>`;
-      return;
-    }
-
-    filtered.forEach(phone => {
-      const tr = document.createElement('tr');
-
-      const isAvailable = (phone.stockStatus || 'In Stock') === 'In Stock';
-
-      tr.innerHTML = `
-        <td style="font-weight: 700; color: var(--text-main);">
-          <div style="display: flex; align-items: center; gap: 10px;">
-            <img src="${phone.img}" style="width: 32px; height: 32px; object-fit: contain;" onerror="this.onerror=null; this.src=DEFAULT_PHONE_SVG">
-            <span>${phone.title}</span>
-          </div>
-        </td>
-        <td><span class="hud-badge ${phone.category === 'new' ? 'hud-badge-green' : 'hud-badge-cyan'}">${phone.category.toUpperCase()}</span></td>
-        <td style="color: var(--cyan-primary); font-weight: 700;">₹${phone.price.toLocaleString('en-IN')}</td>
-        <td>${phone.conditionGrade}</td>
-        <td>
-          <button class="btn btn-sm ${isAvailable ? 'btn-green' : 'btn-magenta'} toggle-stock-btn" data-id="${phone.id}" style="font-size: 0.8rem; padding: 4px 10px;">
-            <i class="fas ${isAvailable ? 'fa-check-circle' : 'fa-times-circle'}"></i> ${isAvailable ? 'In Stock' : 'Out of Stock'}
-          </button>
-        </td>
-        <td>
-          <button class="btn btn-sm ${phone.isFloating ? 'btn-cyan' : 'btn-glass'} toggle-float-btn" data-id="${phone.id}" style="font-size: 0.8rem; padding: 4px 10px;">
-            <i class="fas fa-atom"></i> ${phone.isFloating ? 'Stage ON' : 'Off'}
-          </button>
-        </td>
-        <td>
-          <div style="display: flex; gap: 6px;">
-            <button class="btn btn-glass btn-sm edit-phone-btn" data-id="${phone.id}"><i class="fas fa-edit"></i> Edit</button>
-            <button class="btn btn-magenta btn-sm delete-phone-btn" data-id="${phone.id}"><i class="fas fa-trash"></i></button>
-          </div>
-        </td>
-      `;
-
-      // Live Stock Toggle Handler
-      tr.querySelector('.toggle-stock-btn').addEventListener('click', () => {
-        playSFX('click');
-        phone.stockStatus = isAvailable ? 'Out of Stock' : 'In Stock';
-        saveInventory();
-        showHUDToast(`Stock for "${phone.title}" set to: ${phone.stockStatus}`, isAvailable ? 'warning' : 'success');
-      });
-
-      // Float Toggle Handler
-      tr.querySelector('.toggle-float-btn').addEventListener('click', () => {
-        playSFX('click');
-        phone.isFloating = !phone.isFloating;
-        saveInventory();
-        showHUDToast(`Floating stage for "${phone.title}" set ${phone.isFloating ? 'ON' : 'OFF'} live!`, 'info');
-      });
-
-      // Edit Handler
-      tr.querySelector('.edit-phone-btn').addEventListener('click', () => {
-        playSFX('click');
-        openEditPhoneForm(phone);
-      });
-
-      // Delete Handler
-      tr.querySelector('.delete-phone-btn').addEventListener('click', () => {
-        if (confirm(`Are you sure you want to delete "${phone.title}"?`)) {
-          playSFX('success');
-          inventory = inventory.filter(p => p.id !== phone.id);
-          saveInventory();
-          showHUDToast(`Deleted "${phone.title}" live!`, 'danger');
-        }
-      });
-
-      tbody.appendChild(tr);
-    });
   }
 
   function openEditPhoneForm(phone) {
-    document.getElementById('admin-tab-add-btn').click();
-    document.getElementById('admin-form-title').textContent = `EDIT: ${phone.title}`;
+    const addBtn = document.getElementById('admin-tab-add-btn');
+    if (addBtn) addBtn.click();
+
+    const formTitle = document.getElementById('admin-form-title');
+    if (formTitle) formTitle.textContent = `EDIT: ${phone.title}`;
+
+    ensurePhoneMultiImages(phone);
 
     const phoneIdInput = document.getElementById('form-phone-id');
     if (phoneIdInput) phoneIdInput.value = phone.id;
     const formBrand = document.getElementById('form-brand');
     if (formBrand) formBrand.value = phone.brand;
-    const formTitle = document.getElementById('form-title');
-    if (formTitle) formTitle.value = phone.title;
+    const formTitleInput = document.getElementById('form-title');
+    if (formTitleInput) formTitleInput.value = phone.title;
     const formCategory = document.getElementById('form-category');
     if (formCategory) formCategory.value = phone.category;
     const formPrice = document.getElementById('form-price');
@@ -1028,12 +1467,163 @@
     if (formBattery) formBattery.value = phone.batteryHealth;
     const formSpecs = document.getElementById('form-specs');
     if (formSpecs) formSpecs.value = phone.specs;
-    const formImg = document.getElementById('form-img');
-    if (formImg) formImg.value = phone.img;
     const formAcc = document.getElementById('form-accessories');
     if (formAcc) formAcc.value = phone.accessories;
     const formFloat = document.getElementById('form-is-floating');
     if (formFloat) formFloat.checked = phone.isFloating;
+
+    currentEditingImages = phone.images ? [...phone.images] : [phone.img];
+    renderAdminThumbnails();
+  }
+
+  // --- RENDER LIVE INVENTORY MANAGEMENT TABLE ---
+  function renderAdminInventoryTable() {
+    const tbody = document.getElementById('admin-inventory-tbody');
+    if (!tbody) return;
+    tbody.innerHTML = '';
+
+    const q = (document.getElementById('admin-search-input')?.value || '').trim().toLowerCase();
+
+    let list = inventory;
+    if (q) {
+      list = inventory.filter(p => 
+        p.title.toLowerCase().includes(q) || 
+        p.brand.toLowerCase().includes(q) || 
+        (p.conditionGrade && p.conditionGrade.toLowerCase().includes(q)) ||
+        (p.category && p.category.toLowerCase().includes(q))
+      );
+    }
+
+    if (list.length === 0) {
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="7" style="text-align: center; color: var(--text-muted); padding: 32px 16px; font-family: var(--font-sub);">
+            <i class="fas fa-search" style="font-size: 1.8rem; margin-bottom: 8px; display: block; color: var(--cyan-primary);"></i>
+            No mobile inventory matches "${q}"
+          </td>
+        </tr>`;
+      return;
+    }
+
+    list.forEach(phone => {
+      ensurePhoneMultiImages(phone);
+      const tr = document.createElement('tr');
+      const photoCount = (phone.images && phone.images.length) || 1;
+      const isNew = phone.category === 'new';
+
+      tr.innerHTML = `
+        <td>
+          <div class="admin-table-model-cell">
+            <div class="admin-table-thumb-wrap" title="${photoCount} photos available">
+              <img src="${phone.img || phone.images[0]}" alt="${phone.title}" onerror="this.onerror=null; this.src=DEFAULT_PHONE_SVG">
+              <span class="admin-table-photo-count"><i class="fas fa-images"></i> ${photoCount}</span>
+            </div>
+            <div>
+              <strong style="color: var(--text-main); display: block; font-size: 0.92rem;">${phone.title}</strong>
+              <span style="color: var(--cyan-primary); font-size: 0.75rem; font-family: var(--font-sub); text-transform: uppercase;">${phone.brand} &bull; ${phone.specs || ''}</span>
+            </div>
+          </div>
+        </td>
+        <td>
+          <span class="hud-badge ${isNew ? 'hud-badge-green' : 'hud-badge-cyan'}" style="font-size: 0.72rem; padding: 2px 8px;">
+            ${isNew ? 'BRAND NEW' : 'PRE-OWNED'}
+          </span>
+        </td>
+        <td>
+          <strong style="color: var(--text-main);">₹${phone.price.toLocaleString('en-IN')}</strong>
+          <span style="font-size: 0.75rem; color: var(--text-dim); text-decoration: line-through; display: block;">MRP ₹${phone.mrp.toLocaleString('en-IN')}</span>
+        </td>
+        <td>
+          <span style="font-size: 0.82rem; color: var(--text-muted); display: block;">${phone.conditionGrade}</span>
+          <span style="font-size: 0.75rem; color: var(--green-success);"><i class="fas fa-battery-half"></i> ${phone.batteryHealth}%</span>
+        </td>
+        <td>
+          <span style="color: var(--green-success); font-size: 0.82rem; font-weight: 700;">
+            <i class="fas fa-check-circle"></i> ${phone.stockStatus || 'In Stock'}
+          </span>
+        </td>
+        <td>
+          <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+            <input type="checkbox" class="admin-toggle-floating-cb" data-id="${phone.id}" ${phone.isFloating ? 'checked' : ''}>
+            <span style="font-size: 0.8rem; font-weight: 700; color: ${phone.isFloating ? 'var(--cyan-primary)' : 'var(--text-dim)'};">
+              ${phone.isFloating ? 'Orbiting' : 'Off'}
+            </span>
+          </label>
+        </td>
+        <td>
+          <div class="admin-actions-cell">
+            <button type="button" class="btn btn-cyan btn-sm admin-edit-phone-btn" data-id="${phone.id}" title="Edit phone details and photos">
+              <i class="fas fa-edit"></i> Edit
+            </button>
+            <button type="button" class="btn btn-glass btn-sm admin-inspect-phone-btn" data-id="${phone.id}" title="View 5-6 photos in customer inspector">
+              <i class="fas fa-eye"></i> View
+            </button>
+            <button type="button" class="btn btn-glass btn-sm admin-delete-phone-btn" data-id="${phone.id}" title="Delete listing" style="color: var(--magenta-accent);">
+              <i class="fas fa-trash-can"></i>
+            </button>
+          </div>
+        </td>
+      `;
+
+      // Floating toggle
+      const floatCb = tr.querySelector('.admin-toggle-floating-cb');
+      if (floatCb) {
+        floatCb.addEventListener('change', (e) => {
+          phone.isFloating = e.target.checked;
+          saveInventory();
+          playSFX('click');
+          showHUDToast(`Updated "${phone.title}" homepage floating status!`, 'info');
+        });
+      }
+
+      // Edit
+      const editBtn = tr.querySelector('.admin-edit-phone-btn');
+      if (editBtn) {
+        editBtn.addEventListener('click', () => {
+          playSFX('click');
+          openEditPhoneForm(phone);
+        });
+      }
+
+      // View
+      const inspectBtn = tr.querySelector('.admin-inspect-phone-btn');
+      if (inspectBtn) {
+        inspectBtn.addEventListener('click', () => {
+          playSFX('click');
+          openPhoneInspectorModal(phone.id);
+        });
+      }
+
+      // Delete
+      const deleteBtn = tr.querySelector('.admin-delete-phone-btn');
+      if (deleteBtn) {
+        deleteBtn.addEventListener('click', () => {
+          if (confirm(`Are you sure you want to permanently delete "${phone.title}"?`)) {
+            playSFX('hover');
+            inventory = inventory.filter(p => p.id !== phone.id);
+            saveInventory();
+            showHUDToast(`Deleted "${phone.title}" from store`, 'danger');
+          }
+        });
+      }
+
+      tbody.appendChild(tr);
+    });
+  }
+
+  function openLightbox(src) {
+    const modal = document.getElementById('gallery-lightbox-modal');
+    const img = document.getElementById('lightbox-img');
+    if (modal && img) {
+      img.src = src;
+      modal.classList.add('active');
+      playSFX('click');
+    }
+  }
+
+  function closeLightbox() {
+    const modal = document.getElementById('gallery-lightbox-modal');
+    if (modal) modal.classList.remove('active');
   }
 
   // --- CUSTOMER USER AUTHENTICATION SYSTEM ---
@@ -1202,15 +1792,19 @@
     const adminModal = document.getElementById('admin-modal');
     const userAuthClose = document.getElementById('user-auth-modal-close');
     const userAuthModal = document.getElementById('user-auth-modal');
+    const lightboxClose = document.getElementById('lightbox-close-btn');
+    const lightboxModal = document.getElementById('gallery-lightbox-modal');
 
     if (inspectorClose && inspectorModal) inspectorClose.addEventListener('click', () => inspectorModal.classList.remove('active'));
     if (adminClose && adminModal) adminClose.addEventListener('click', () => adminModal.classList.remove('active'));
     if (userAuthClose && userAuthModal) userAuthClose.addEventListener('click', () => userAuthModal.classList.remove('active'));
+    if (lightboxClose && lightboxModal) lightboxClose.addEventListener('click', () => lightboxModal.classList.remove('active'));
 
     window.addEventListener('click', (e) => {
       if (inspectorModal && e.target === inspectorModal) inspectorModal.classList.remove('active');
       if (adminModal && e.target === adminModal) adminModal.classList.remove('active');
       if (userAuthModal && e.target === userAuthModal) userAuthModal.classList.remove('active');
+      if (lightboxModal && e.target === lightboxModal) lightboxModal.classList.remove('active');
     });
   }
 
